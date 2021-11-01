@@ -10,6 +10,153 @@
 #code based system state, I.E. if you selete heat it will only show heat adjustment option, if
 #you select auto it will show both heat and cool.
 ######-->
+<!--#######
+#Scripts that the buttons interact with
+######-->
+<?php
+	if(isset($_POST['heatuptemp'])){
+								$heatfile = "set_input/set_heat.txt";
+								$coolfile = "set_input/set_cool.txt";
+								$set_cool = file_get_contents($coolfile);
+								$set_heat = file_get_contents($heatfile);
+								if ($set_heat > 89){
+													$set_heat = 90;
+													file_put_contents($heatfile, $set_heat);
+													if ($set_heat+"2" > $set_cool){
+																					$set_cool = $set_heat+"2";
+																					file_put_contents($coolfile, $set_cool);
+																				}
+												}
+									else {
+										file_put_contents($heatfile, ++$set_heat);
+										if ($set_heat+"2" > $set_cool){
+																		$set_cool = $set_heat+"2";
+																		file_put_contents($coolfile, $set_cool);
+																	}
+										}
+								header('Location: '.$_SERVER['REQUEST_URI']);
+								ob_end_flush();
+								}
+	if(isset($_POST['heatdowntemp'])){
+									$heatfile = "set_input/set_heat.txt";
+									$set_heat = file_get_contents($heatfile);
+									if ($set_heat < "61"){
+															$set_heat = "60";
+															file_put_contents($heatfile, $set_heat);
+														}
+										else {
+												file_put_contents($heatfile, --$set_heat);												
+											}
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+								}
+	if(isset($_POST['cooluptemp'])){
+								$coolfile = "set_input/set_cool.txt";
+								$set_cool = file_get_contents($coolfile);
+								if ($set_cool > 98){
+													$set_cool = 99;
+													file_put_contents($coolfile, $set_cool);
+												}
+									else {
+											file_put_contents($coolfile, ++$set_cool);
+										}
+								header('Location: '.$_SERVER['REQUEST_URI']);
+								ob_end_flush();	
+								}
+	if(isset($_POST['cooldowntemp'])){
+									$coolfile = "set_input/set_cool.txt";
+									$heatfile = "set_input/set_heat.txt";
+									$set_cool = file_get_contents($coolfile);
+									$set_heat = file_get_contents($heatfile);
+									if ($set_cool < "65"){
+															$set_cool = "64";
+															file_put_contents($coolfile, $set_cool);
+															if ($set_cool-"2" < $set_heat){
+																							$set_heat = $set_cool-"2";
+																							file_put_contents($heatfile, $set_heat);
+																						}
+															
+														}
+										else {
+												file_put_contents($coolfile, --$set_cool);
+												if ($set_cool-"2" < $set_heat){
+																				$set_heat = $set_cool-"2";
+																				file_put_contents($heatfile, $set_heat);
+																			}
+											}
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+									
+								}
+	if(isset($_POST['fanauto'])){
+									$fanfile = "state/fanstate.txt";
+									$set_fan_state = "2";
+									file_put_contents($fanfile, $set_fan_state);
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+								}
+	if(isset($_POST['fanon'])){
+									$fanfile = "state/fanstate.txt";
+									$set_fan_state = "1";
+									file_put_contents($fanfile, $set_fan_state);
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+								}
+	if(isset($_POST['fanoff'])){
+									$fanfile = "state/fanstate.txt";
+									$set_fan_state = "0";
+									file_put_contents($fanfile, $set_fan_state);
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+								}
+	if(isset($_POST['systemoff'])){
+									$systemfile = "state/systemstate.txt";
+									$set_system_state = "0";
+									file_put_contents($systemfile, $set_system_state);
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+									
+								}
+	if(isset($_POST['systemauto'])){
+									$systemfile = "state/systemstate.txt";
+									$set_system_state = "1";
+									file_put_contents($systemfile, $set_system_state);
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+									
+								}
+	if(isset($_POST['systemheat'])){
+									$systemfile = "state/systemstate.txt";
+									$set_system_state = "2";
+									file_put_contents($systemfile, $set_system_state);
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+									
+								}
+	if(isset($_POST['systemcool'])){
+									$systemfile = "state/systemstate.txt";
+									$set_system_state = "3";
+									file_put_contents($systemfile, $set_system_state);
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+									
+								}
+	if(isset($_POST['hold'])){
+									$holdfile = "state/hold.txt";
+									$set_hold_state = "1";
+									file_put_contents($holdfile, $set_hold_state);
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+								}
+	if(isset($_POST['resume'])){
+									$holdfile = "state/hold.txt";
+									$set_hold_state = "0";
+									file_put_contents($holdfile, $set_hold_state);
+									header('Location: '.$_SERVER['REQUEST_URI']);
+									ob_end_flush();
+								}
+?>
+
 <div class="row">
 		<!--#######
 		#Temp Controls 
@@ -264,152 +411,7 @@
 	</div>
 </div>
 
-<!--#######
-#Scripts that the buttons interact with
-######-->
-<?php
-	if(isset($_POST['heatuptemp'])){
-								$heatfile = "set_input/set_heat.txt";
-								$coolfile = "set_input/set_cool.txt";
-								$set_cool = file_get_contents($coolfile);
-								$set_heat = file_get_contents($heatfile);
-								if ($set_heat > 89){
-													$set_heat = 90;
-													file_put_contents($heatfile, $set_heat);
-													if ($set_heat+"2" > $set_cool){
-																					$set_cool = $set_heat+"2";
-																					file_put_contents($coolfile, $set_cool);
-																				}
-												}
-									else {
-										file_put_contents($heatfile, ++$set_heat);
-										if ($set_heat+"2" > $set_cool){
-																		$set_cool = $set_heat+"2";
-																		file_put_contents($coolfile, $set_cool);
-																	}
-										}
-								header('Location: '.$_SERVER['REQUEST_URI']);
-								ob_end_flush();
-								}
-	if(isset($_POST['heatdowntemp'])){
-									$heatfile = "set_input/set_heat.txt";
-									$set_heat = file_get_contents($heatfile);
-									if ($set_heat < "61"){
-															$set_heat = "60";
-															file_put_contents($heatfile, $set_heat);
-														}
-										else {
-												file_put_contents($heatfile, --$set_heat);												
-											}
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-								}
-	if(isset($_POST['cooluptemp'])){
-								$coolfile = "set_input/set_cool.txt";
-								$set_cool = file_get_contents($coolfile);
-								if ($set_cool > 98){
-													$set_cool = 99;
-													file_put_contents($coolfile, $set_cool);
-												}
-									else {
-											file_put_contents($coolfile, ++$set_cool);
-										}
-								header('Location: '.$_SERVER['REQUEST_URI']);
-								ob_end_flush();	
-								}
-	if(isset($_POST['cooldowntemp'])){
-									$coolfile = "set_input/set_cool.txt";
-									$heatfile = "set_input/set_heat.txt";
-									$set_cool = file_get_contents($coolfile);
-									$set_heat = file_get_contents($heatfile);
-									if ($set_cool < "65"){
-															$set_cool = "64";
-															file_put_contents($coolfile, $set_cool);
-															if ($set_cool-"2" < $set_heat){
-																							$set_heat = $set_cool-"2";
-																							file_put_contents($heatfile, $set_heat);
-																						}
-															
-														}
-										else {
-												file_put_contents($coolfile, --$set_cool);
-												if ($set_cool-"2" < $set_heat){
-																				$set_heat = $set_cool-"2";
-																				file_put_contents($heatfile, $set_heat);
-																			}
-											}
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-									
-								}
-	if(isset($_POST['fanauto'])){
-									$fanfile = "state/fanstate.txt";
-									$set_fan_state = "2";
-									file_put_contents($fanfile, $set_fan_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-								}
-	if(isset($_POST['fanon'])){
-									$fanfile = "state/fanstate.txt";
-									$set_fan_state = "1";
-									file_put_contents($fanfile, $set_fan_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-								}
-	if(isset($_POST['fanoff'])){
-									$fanfile = "state/fanstate.txt";
-									$set_fan_state = "0";
-									file_put_contents($fanfile, $set_fan_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-								}
-	if(isset($_POST['systemoff'])){
-									$systemfile = "state/systemstate.txt";
-									$set_system_state = "0";
-									file_put_contents($systemfile, $set_system_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-									
-								}
-	if(isset($_POST['systemauto'])){
-									$systemfile = "state/systemstate.txt";
-									$set_system_state = "1";
-									file_put_contents($systemfile, $set_system_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-									
-								}
-	if(isset($_POST['systemheat'])){
-									$systemfile = "state/systemstate.txt";
-									$set_system_state = "2";
-									file_put_contents($systemfile, $set_system_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-									
-								}
-	if(isset($_POST['systemcool'])){
-									$systemfile = "state/systemstate.txt";
-									$set_system_state = "3";
-									file_put_contents($systemfile, $set_system_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-									
-								}
-	if(isset($_POST['hold'])){
-									$holdfile = "state/hold.txt";
-									$set_hold_state = "1";
-									file_put_contents($holdfile, $set_hold_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-								}
-	if(isset($_POST['resume'])){
-									$holdfile = "state/hold.txt";
-									$set_hold_state = "0";
-									file_put_contents($holdfile, $set_hold_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-								}
-?>
+
 
 <script>
 if ( window.history.replaceState ) {
