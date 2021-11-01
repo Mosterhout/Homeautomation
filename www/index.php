@@ -12,17 +12,22 @@
 ######-->
 <div class="row">
 	<div class="column">
+		<!--#######
+		#Temp Controls 
+		######-->
+		<?php  //Getting the current stats for system and hold
+		$systemfile = "state/systemstate.txt";
+		$systemstatus = file_get_contents($systemfile);
+		$holdfile = "state/hold.txt";
+			$holdstatus = file_get_contents($holdfile);
+		?>
 		<?php 
-			$systemfile = "state/systemstate.txt";
-			$systemstatus = file_get_contents($systemfile);
 			if($systemstatus == '0') : ?>
 				<h3>System: Off</h3>
 		<?php endif; ?>
 		
 		<?php 
-			$systemfile = "state/systemstate.txt";
-			$systemstatus = file_get_contents($systemfile);
-			if($systemstatus == '1') : ?> <!--####### Auot section ######-->
+			if($systemstatus == '1') : ?> <!--####### Auto section ######-->
 			<table>
 				<tr>
 					<td>
@@ -74,8 +79,6 @@
 			</table>
 		<?php endif; ?>
 		<?php 
-			$systemfile = "state/systemstate.txt";
-			$systemstatus = file_get_contents($systemfile);
 			if($systemstatus == '2') : ?> <!--####### heat section ######-->
 			<table>
 				<tr>
@@ -103,8 +106,6 @@
 			</table>
 		<?php endif; ?>
 		<?php 
-			$systemfile = "state/systemstate.txt";
-			$systemstatus = file_get_contents($systemfile);
 			if($systemstatus == '3') : ?> <!--####### Cool section ######-->
 			<table>
 				<tr>
@@ -131,6 +132,32 @@
 				</tr>
 			</table>
 		<?php endif; ?>
+		<?php 
+			
+			if ($holdstatus == '1') {
+										$hold = 'green';
+									}
+			else {
+					$hold = '#686868';
+				}
+			$systemfile = "state/systemstate.txt";
+			$systemstatus = file_get_contents($systemfile);
+			if($systemstatus != '0'): ?> 
+			<table>
+				<tr>
+					<td>
+						<form action="" method="post">
+							<button style="background-color:<?php print $hold; ?>" name="hold" class="button">Hold</button>
+						</form>
+					</td>
+					<td>
+						<form action="" method="post">
+							<button name="resume" class="button">Resume</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+			<?php endif; ?>
 	</div>
 
 <!--#######
