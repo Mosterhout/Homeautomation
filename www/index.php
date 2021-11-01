@@ -11,7 +11,6 @@
 #you select auto it will show both heat and cool.
 ######-->
 <div class="row">
-	
 		<!--#######
 		#Temp Controls 
 		######-->
@@ -27,6 +26,7 @@
 				$hold = '#686868';
 			}
 		?>
+		
 		<div class="column">
 		<?php 
 			if($systemstatus == '0') : ?>
@@ -88,7 +88,7 @@
 				</tr>
 			</table>
 		<?php endif; ?>
-		<?php // Hole/Resume
+		<?php // Hold/Resume
 			if($systemstatus != '0'): ?> 
 			<table>
 				<tr>
@@ -399,14 +399,14 @@
 									$holdfile = "state/hold.txt";
 									$set_hold_state = "1";
 									file_put_contents($holdfile, $set_hold_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
+									header('Refresh:0']);
 									ob_end_flush();
 								}
 	if(isset($_POST['resume'])){
 									$holdfile = "state/hold.txt";
 									$set_hold_state = "0";
 									file_put_contents($holdfile, $set_hold_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
+									header('Refresh:0']);
 									ob_end_flush();
 								}
 ?>
