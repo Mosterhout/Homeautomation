@@ -19,7 +19,13 @@
 		$systemfile = "state/systemstate.txt";
 		$systemstatus = file_get_contents($systemfile);
 		$holdfile = "state/hold.txt";
-			$holdstatus = file_get_contents($holdfile);
+		$holdstatus = file_get_contents($holdfile);
+		if ($holdstatus == '1') {
+									$hold = 'green';
+								}
+		else {
+				$hold = '#686868';
+			}
 		?>
 		<?php 
 			if($systemstatus == '0') : ?>
@@ -81,7 +87,23 @@
 				</tr>
 			</table>
 		<?php endif; ?>
-
+		<?php // Hole/Resume
+			if($systemstatus != '0'): ?> 
+			<table>
+				<tr>
+					<td>
+						<form action="" method="post">
+							<button style="background-color:<?php print $hold; ?>" name="hold" class="button">Hold</button>
+						</form>
+					</td>
+					<td>
+						<form action="" method="post">
+							<button name="resume" class="button">Resume</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+		<?php endif; ?>
 	</div>
 
 <!--#######
