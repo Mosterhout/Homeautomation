@@ -6,12 +6,7 @@
 </head>
 <body>
 <!--#######
-#set temp section, This section is broken into different php scripts that output different html 
-#code based system state, I.E. if you selete heat it will only show heat adjustment option, if
-#you select auto it will show both heat and cool.
-######-->
-<!--#######
-#Scripts that the buttons interact with
+#Scripts that the buttons interact with, this has to be above the actuall buttons/object that call the scipts so the page refeashes correctly
 ######-->
 <?php
 	if(isset($_POST['heatuptemp'])){
@@ -156,7 +151,11 @@
 									ob_end_flush();
 								}
 ?>
-
+<!--#######
+#set temp section, This section is broken into different php scripts that output different html 
+#code based system state, I.E. if you selete heat it will only show heat adjustment option, if
+#you select auto it will show both heat and cool.
+######-->
 <div class="row">
 		<!--#######
 		#Temp Controls 
