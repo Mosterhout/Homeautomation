@@ -81,7 +81,7 @@
 				</tr>
 			</table>
 		<?php endif; ?>
-		
+		</div>
 		<?php //hold/resume
 			if ($holdstatus == '1') {
 										$hold = 'green';
@@ -105,7 +105,7 @@
 				</tr>
 			</table>
 			<?php endif; ?>
-	</div>
+	
 
 <!--#######
 #Current Stats
