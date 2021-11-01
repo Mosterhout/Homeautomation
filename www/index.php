@@ -81,31 +81,8 @@
 				</tr>
 			</table>
 		<?php endif; ?>
-		</div>
-		<?php //hold/resume
-			if ($holdstatus == '1') {
-										$hold = 'green';
-									}
-			else {
-					$hold = '#686868';
-				}
-			if($systemstatus != '0'): ?> 
-			<table>
-				<tr>
-					<td>
-						<form action="" method="post">
-							<button style="background-color:<?php print $hold; ?>" name="hold" class="button">Hold</button>
-						</form>
-					</td>
-					<td>
-						<form action="" method="post">
-							<button name="resume" class="button">Resume</button>
-						</form>
-					</td>
-				</tr>
-			</table>
-			<?php endif; ?>
-	
+
+	</div>
 
 <!--#######
 #Current Stats
