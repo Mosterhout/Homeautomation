@@ -399,14 +399,14 @@
 									$holdfile = "state/hold.txt";
 									$set_hold_state = "1";
 									file_put_contents($holdfile, $set_hold_state);
-									header('Refresh:0']);
+									header('Location: '.$_SERVER['REQUEST_URI']);
 									ob_end_flush();
 								}
 	if(isset($_POST['resume'])){
 									$holdfile = "state/hold.txt";
 									$set_hold_state = "0";
 									file_put_contents($holdfile, $set_hold_state);
-									header('Refresh:0']);
+									header('Location: '.$_SERVER['REQUEST_URI']);
 									ob_end_flush();
 								}
 ?>
