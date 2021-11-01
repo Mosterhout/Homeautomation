@@ -26,60 +26,8 @@
 				<h3>System: Off</h3>
 		<?php endif; ?>
 		
-		<?php 
-			if($systemstatus == '1') : ?> <!--####### Auto section ######-->
-			<table>
-				<tr>
-					<td>
-						<h3><?php
-							$heatfile = "set_input/set_heat.txt";
-							$content = file_get_contents($heatfile);
-							echo "Set Heat: " . $content . "<br>";
-						?></h3>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<!-- Heat Buttons -->
-						<form action="" method="post">
-							<button name="heatuptemp" class="button buttonheat">up</button>
-						</form>
-					</td>
-					<td>
-						<form action="" method="post">
-							<button name="heatdowntemp" class="button buttonheat">down</button>
-						</form>
-					</td>
-				</tr>
-			</table>
-			
-			<table>
-				<tr>
-					<td>
-						<h3><?php
-							$coolfile = "set_input/set_cool.txt";
-							$content = file_get_contents($coolfile);
-							echo "Set Cool: " . $content . "<br>";
-						?></h3>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<!-- Cool Buttons -->	
-						<form action="" method="post">
-							<button name="cooluptemp" class="button buttoncool">up</button>
-						</form>
-					</td>
-					<td>
-						<form action="" method="post">
-							<button name="cooldowntemp" class="button buttoncool">down</button>
-						</form>
-					</td>
-				</tr>
-			</table>
-		<?php endif; ?>
-		<?php 
-			if($systemstatus == '2') : ?> <!--####### heat section ######-->
+		<?php //Heat Buttons
+			if($systemstatus == '1' || $systemstatus == '2') : ?>
 			<table>
 				<tr>
 					<td>
@@ -105,8 +53,9 @@
 				</tr>
 			</table>
 		<?php endif; ?>
-		<?php 
-			if($systemstatus == '3') : ?> <!--####### Cool section ######-->
+		
+		<?php // cool buttons
+			if($systemstatus == '1' || $systemstatus == '3') : ?>
 			<table>
 				<tr>
 					<td>
@@ -132,16 +81,14 @@
 				</tr>
 			</table>
 		<?php endif; ?>
-		<?php 
-			
+		
+		<?php //hold/resume
 			if ($holdstatus == '1') {
 										$hold = 'green';
 									}
 			else {
 					$hold = '#686868';
 				}
-			$systemfile = "state/systemstate.txt";
-			$systemstatus = file_get_contents($systemfile);
 			if($systemstatus != '0'): ?> 
 			<table>
 				<tr>
