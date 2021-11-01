@@ -1,8 +1,9 @@
-This is a projoct built using a Rasberry Pi 3b , 3 5v relays and DHT22 arduno sensors
+This is a project built using a Raspberry Pi 3b, 3 5v relays and DHT22 Arduino sensors
 
-The goal is replace my basic programiable thermostat with one i can control from my 
-phone and expaind on more home automation as I go. After the thermostat i will ass in the
+The goal is to replace my basic programmable thermostat with one I can control from my 
+phone and expand on more home automation as I go. After the thermostat i will add in the
 watering system
+
 
 OS: PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
 NAME="Raspbian GNU/Linux"
