@@ -11,7 +11,7 @@
 #you select auto it will show both heat and cool.
 ######-->
 <div class="row">
-	<div class="column">
+	
 		<!--#######
 		#Temp Controls 
 		######-->
@@ -27,6 +27,7 @@
 				$hold = '#686868';
 			}
 		?>
+		<div class="column">
 		<?php 
 			if($systemstatus == '0') : ?>
 				<h3>System: Off</h3>
