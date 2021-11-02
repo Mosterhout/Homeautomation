@@ -92,40 +92,29 @@
 									reloadpage();
 								}
 	if(isset($_POST['systemoff'])){
-									$set_system_state = "0";
-									file_put_contents($systemfile, $set_system_state);
+									file_put_contents($systemfile, 0);
 									reloadpage();
-									
 								}
 	if(isset($_POST['systemauto'])){
-									$set_system_state = "1";
-									file_put_contents($systemfile, $set_system_state);
-									reloadpage();;
-									
+									file_put_contents($systemfile, 1);
+									reloadpage();
 								}
 	if(isset($_POST['systemheat'])){
-									$set_system_state = "2";
-									file_put_contents($systemfile, $set_system_state);
+									file_put_contents($systemfile, 2);
 									reloadpage();
-									
 								}
 	if(isset($_POST['systemcool'])){
-									$set_system_state = "3";
-									file_put_contents($systemfile, $set_system_state);
+									file_put_contents($systemfile, 3);
 									reloadpage();
 									
 								}
 	if(isset($_POST['hold'])){
-									$set_hold_state = "1";
-									file_put_contents($holdfile, $set_hold_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									file_put_contents($holdfile, 1);
+									reloadpage();
 								}
 	if(isset($_POST['resume'])){
-									$set_hold_state = "0";
-									file_put_contents($holdfile, $set_hold_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									file_put_contents($holdfile, 0);
+									reloadpage();
 								}
 ?>
 <!--#######
