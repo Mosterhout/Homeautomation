@@ -9,11 +9,11 @@
 #Scripts that the buttons interact with, this has to be above the actuall buttons/object that call the scipts so the page refeashes correctly
 ######-->
 <?php
+	$heatfile = "set_input/set_heat.txt";
+	$coolfile = "set_input/set_cool.txt";
+	$set_cool = file_get_contents($coolfile);
+	$set_heat = file_get_contents($heatfile);
 	if(isset($_POST['heatuptemp'])){
-								$heatfile = "set_input/set_heat.txt";
-								$coolfile = "set_input/set_cool.txt";
-								$set_cool = file_get_contents($coolfile);
-								$set_heat = file_get_contents($heatfile);
 								if ($set_heat > 89){
 													$set_heat = 90;
 													file_put_contents($heatfile, $set_heat);
@@ -33,8 +33,6 @@
 								ob_end_flush();
 								}
 	if(isset($_POST['heatdowntemp'])){
-									$heatfile = "set_input/set_heat.txt";
-									$set_heat = file_get_contents($heatfile);
 									if ($set_heat < "61"){
 															$set_heat = "60";
 															file_put_contents($heatfile, $set_heat);
@@ -46,8 +44,6 @@
 									ob_end_flush();
 								}
 	if(isset($_POST['cooluptemp'])){
-								$coolfile = "set_input/set_cool.txt";
-								$set_cool = file_get_contents($coolfile);
 								if ($set_cool > 98){
 													$set_cool = 99;
 													file_put_contents($coolfile, $set_cool);
@@ -59,10 +55,6 @@
 								ob_end_flush();	
 								}
 	if(isset($_POST['cooldowntemp'])){
-									$coolfile = "set_input/set_cool.txt";
-									$heatfile = "set_input/set_heat.txt";
-									$set_cool = file_get_contents($coolfile);
-									$set_heat = file_get_contents($heatfile);
 									if ($set_cool < "65"){
 															$set_cool = "64";
 															file_put_contents($coolfile, $set_cool);
