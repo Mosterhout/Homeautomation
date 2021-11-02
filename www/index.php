@@ -22,6 +22,7 @@
 							header('Location: '.$_SERVER['REQUEST_URI']);
 							ob_end_flush();
 						}
+										}
 	if(isset($_POST['heatuptemp'])){
 								if ($set_heat > 89){
 													$set_heat = 90;
@@ -48,85 +49,71 @@
 										else {
 												file_put_contents($heatfile, --$set_heat);												
 											}
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									reloadpage();
 								}
 	if(isset($_POST['cooluptemp'])){
-								if ($set_cool > 98){
-													$set_cool = 99;
-													file_put_contents($coolfile, $set_cool);
-												}
-									else {
-											file_put_contents($coolfile, ++$set_cool);
-										}
-								header('Location: '.$_SERVER['REQUEST_URI']);
-								ob_end_flush();	
+									if ($set_cool > 98){
+														$set_cool = 99;
+														file_put_contents($coolfile, $set_cool);
+													}
+										else {
+												file_put_contents($coolfile, ++$set_cool);
+											}
+									reloadpage();	
 								}
 	if(isset($_POST['cooldowntemp'])){
-									if ($set_cool < "65"){
-															$set_cool = "64";
-															file_put_contents($coolfile, $set_cool);
-															if ($set_cool-"2" < $set_heat){
-																							$set_heat = $set_cool-"2";
-																							file_put_contents($heatfile, $set_heat);
-																						}
-															
-														}
-										else {
-												file_put_contents($coolfile, --$set_cool);
-												if ($set_cool-"2" < $set_heat){
-																				$set_heat = $set_cool-"2";
-																				file_put_contents($heatfile, $set_heat);
-																			}
-											}
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
-									
-								}
+										if ($set_cool < "65"){
+																$set_cool = "64";
+																file_put_contents($coolfile, $set_cool);
+																if ($set_cool-"2" < $set_heat){
+																								$set_heat = $set_cool-"2";
+																								file_put_contents($heatfile, $set_heat);
+																							}
+																
+															}
+											else {
+													file_put_contents($coolfile, --$set_cool);
+													if ($set_cool-"2" < $set_heat){
+																					$set_heat = $set_cool-"2";
+																					file_put_contents($heatfile, $set_heat);
+																				}
+												}
+										reloadpage();
+									}
 	if(isset($_POST['fanauto'])){
-									$set_fan_state = "2";
-									file_put_contents($fanfile, $set_fan_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									file_put_contents($fanfile, "2");
+									reloadpage();
 								}
 	if(isset($_POST['fanon'])){
-									$set_fan_state = "1";
-									file_put_contents($fanfile, $set_fan_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									file_put_contents($fanfile, "1");
+									reloadpage();
 								}
 	if(isset($_POST['fanoff'])){
-									$set_fan_state = "0";
-									file_put_contents($fanfile, $set_fan_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									file_put_contents($fanfile, "0");
+									reloadpage();
 								}
 	if(isset($_POST['systemoff'])){
 									$set_system_state = "0";
 									file_put_contents($systemfile, $set_system_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									reloadpage();
 									
 								}
 	if(isset($_POST['systemauto'])){
 									$set_system_state = "1";
 									file_put_contents($systemfile, $set_system_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									reloadpage();;
 									
 								}
 	if(isset($_POST['systemheat'])){
 									$set_system_state = "2";
 									file_put_contents($systemfile, $set_system_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									reloadpage();
 									
 								}
 	if(isset($_POST['systemcool'])){
 									$set_system_state = "3";
 									file_put_contents($systemfile, $set_system_state);
-									header('Location: '.$_SERVER['REQUEST_URI']);
-									ob_end_flush();
+									reloadpage();
 									
 								}
 	if(isset($_POST['hold'])){
