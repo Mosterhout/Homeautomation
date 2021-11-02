@@ -22,7 +22,6 @@
 							header('Location: '.$_SERVER['REQUEST_URI']);
 							ob_end_flush();
 						}
-										}
 	if(isset($_POST['heatuptemp'])){
 								if ($set_heat > 89){
 													$set_heat = 90;
@@ -81,15 +80,18 @@
 										reloadpage();
 									}
 	if(isset($_POST['fanauto'])){
-									file_put_contents($fanfile, "2");
+									$set_fan_state = "2";
+									file_put_contents($fanfile, $set_fan_state);
 									reloadpage();
 								}
 	if(isset($_POST['fanon'])){
-									file_put_contents($fanfile, "1");
+									$set_fan_state = "1";
+									file_put_contents($fanfile, $set_fan_state);
 									reloadpage();
 								}
 	if(isset($_POST['fanoff'])){
-									file_put_contents($fanfile, "0");
+									$set_fan_state = "0";
+									file_put_contents($fanfile, $set_fan_state);
 									reloadpage();
 								}
 	if(isset($_POST['systemoff'])){
