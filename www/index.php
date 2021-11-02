@@ -17,6 +17,11 @@
 	$fanfile = "state/fanstate.txt";
 	$systemfile = "state/systemstate.txt";
 	$holdfile = "state/hold.txt";
+	
+	function reloadpage() {
+							header('Location: '.$_SERVER['REQUEST_URI']);
+							ob_end_flush();
+						}
 	if(isset($_POST['heatuptemp'])){
 								if ($set_heat > 89){
 													$set_heat = 90;
@@ -33,8 +38,7 @@
 																		file_put_contents($coolfile, $set_cool);
 																	}
 										}
-								header('Location: '.$_SERVER['REQUEST_URI']);
-								ob_end_flush();
+								reloadpage()
 								}
 	if(isset($_POST['heatdowntemp'])){
 									if ($set_heat < "61"){
