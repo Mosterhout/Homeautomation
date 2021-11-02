@@ -127,6 +127,10 @@
 		#Temp Controls 
 		######-->
 		<?php  //Getting the current stats for system and hold
+		$systemfile = "state/systemstate.txt";
+		$systemstatus = file_get_contents($systemfile);
+		$holdfile = "state/hold.txt";
+		$holdstatus = file_get_contents($holdfile);
 		if ($holdstatus == '1') {
 									$hold = 'green';
 								}
