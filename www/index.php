@@ -209,11 +209,14 @@
 							<button style="background-color:<?php print $hold; ?>" name="hold" class="button">Hold</button>
 						</form>
 					</td>
+					<?php 
+						if($holdstatus == '1'): ?> 
 					<td>
 						<form action="" method="post">
 							<button name="resume" class="button">Resume</button>
 						</form>
 					</td>
+					<?php endif; ?>
 				</tr>
 			</table>
 		<?php endif; ?>
