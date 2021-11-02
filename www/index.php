@@ -9,10 +9,14 @@
 #Scripts that the buttons interact with, this has to be above the actuall buttons/object that call the scipts so the page refeashes correctly
 ######-->
 <?php
+	//Set up all the fils and get contents in one place then i don't need to rewrite them for each POST call
 	$heatfile = "set_input/set_heat.txt";
 	$coolfile = "set_input/set_cool.txt";
 	$set_cool = file_get_contents($coolfile);
 	$set_heat = file_get_contents($heatfile);
+	$fanfile = "state/fanstate.txt";
+	$systemfile = "state/systemstate.txt";
+	$holdfile = "state/hold.txt";
 	if(isset($_POST['heatuptemp'])){
 								if ($set_heat > 89){
 													$set_heat = 90;
@@ -76,28 +80,24 @@
 									
 								}
 	if(isset($_POST['fanauto'])){
-									$fanfile = "state/fanstate.txt";
 									$set_fan_state = "2";
 									file_put_contents($fanfile, $set_fan_state);
 									header('Location: '.$_SERVER['REQUEST_URI']);
 									ob_end_flush();
 								}
 	if(isset($_POST['fanon'])){
-									$fanfile = "state/fanstate.txt";
 									$set_fan_state = "1";
 									file_put_contents($fanfile, $set_fan_state);
 									header('Location: '.$_SERVER['REQUEST_URI']);
 									ob_end_flush();
 								}
 	if(isset($_POST['fanoff'])){
-									$fanfile = "state/fanstate.txt";
 									$set_fan_state = "0";
 									file_put_contents($fanfile, $set_fan_state);
 									header('Location: '.$_SERVER['REQUEST_URI']);
 									ob_end_flush();
 								}
 	if(isset($_POST['systemoff'])){
-									$systemfile = "state/systemstate.txt";
 									$set_system_state = "0";
 									file_put_contents($systemfile, $set_system_state);
 									header('Location: '.$_SERVER['REQUEST_URI']);
@@ -105,7 +105,6 @@
 									
 								}
 	if(isset($_POST['systemauto'])){
-									$systemfile = "state/systemstate.txt";
 									$set_system_state = "1";
 									file_put_contents($systemfile, $set_system_state);
 									header('Location: '.$_SERVER['REQUEST_URI']);
@@ -113,7 +112,6 @@
 									
 								}
 	if(isset($_POST['systemheat'])){
-									$systemfile = "state/systemstate.txt";
 									$set_system_state = "2";
 									file_put_contents($systemfile, $set_system_state);
 									header('Location: '.$_SERVER['REQUEST_URI']);
@@ -121,7 +119,6 @@
 									
 								}
 	if(isset($_POST['systemcool'])){
-									$systemfile = "state/systemstate.txt";
 									$set_system_state = "3";
 									file_put_contents($systemfile, $set_system_state);
 									header('Location: '.$_SERVER['REQUEST_URI']);
@@ -129,14 +126,12 @@
 									
 								}
 	if(isset($_POST['hold'])){
-									$holdfile = "state/hold.txt";
 									$set_hold_state = "1";
 									file_put_contents($holdfile, $set_hold_state);
 									header('Location: '.$_SERVER['REQUEST_URI']);
 									ob_end_flush();
 								}
 	if(isset($_POST['resume'])){
-									$holdfile = "state/hold.txt";
 									$set_hold_state = "0";
 									file_put_contents($holdfile, $set_hold_state);
 									header('Location: '.$_SERVER['REQUEST_URI']);
