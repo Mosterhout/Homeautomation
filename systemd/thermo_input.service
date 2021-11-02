@@ -1,0 +1,13 @@
+[Unit]
+Description=Thermostat sensor inputs
+
+[Service]
+Type=simple
+PIDFile=/opt/thermostate/dht22.pid
+ExecStart=/opt/thermostate/dht22.py
+Restart=on-failure
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target
