@@ -80,18 +80,15 @@
 										reloadpage();
 									}
 	if(isset($_POST['fanauto'])){
-									$set_fan_state = "2";
 									file_put_contents($fanfile, 2);
 									reloadpage();
 								}
 	if(isset($_POST['fanon'])){
-									$set_fan_state = "1";
-									file_put_contents($fanfile, $set_fan_state);
+									file_put_contents($fanfile, 1);
 									reloadpage();
 								}
 	if(isset($_POST['fanoff'])){
-									$set_fan_state = "0";
-									file_put_contents($fanfile, $set_fan_state);
+									file_put_contents($fanfile, 0);
 									reloadpage();
 								}
 	if(isset($_POST['systemoff'])){
