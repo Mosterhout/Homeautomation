@@ -38,7 +38,7 @@
 																		file_put_contents($coolfile, $set_cool);
 																	}
 										}
-								reloadpage()
+								reloadpage();
 								}
 	if(isset($_POST['heatdowntemp'])){
 									if ($set_heat < "61"){
