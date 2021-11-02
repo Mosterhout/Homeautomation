@@ -81,7 +81,7 @@
 									}
 	if(isset($_POST['fanauto'])){
 									$set_fan_state = "2";
-									file_put_contents($fanfile, $set_fan_state);
+									file_put_contents($fanfile, 2);
 									reloadpage();
 								}
 	if(isset($_POST['fanon'])){
