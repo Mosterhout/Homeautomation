@@ -5,13 +5,10 @@ phone and expand on more home automation as I go. After the thermostat i will ad
 watering system
 
 
-OS: PRETTY_NAME="Raspbian GNU/Linux 10 (buster)"
-NAME="Raspbian GNU/Linux"
-VERSION_ID="10"
-VERSION="10 (buster)"
-VERSION_CODENAME=buster
-ID=raspbian
-ID_LIKE=debian
+Distributor ID: Raspbian
+Description:    Raspbian GNU/Linux 11 (bullseye)
+Release:        11
+Codename:       bullseye
 HOME_URL="http://www.raspbian.org/"
 SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
 BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
@@ -22,4 +19,3 @@ Scripts built using
 Python
 Java
 PHP
-

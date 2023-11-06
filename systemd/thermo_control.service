@@ -3,8 +3,8 @@ Description=Thermostat sensor inputs
 
 [Service]
 Type=simple
-PIDFile=/opt/thermostate/thermo_input.pid
-ExecStart=/opt/thermostate/thermo_input.py
+PIDFile=/opt/thermostate/thermo_control.pid
+ExecStart=/opt/thermostate/thermo_control.py
 Restart=on-failure
 User=pi
 Group=pi

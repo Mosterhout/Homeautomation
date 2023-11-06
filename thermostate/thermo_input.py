@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import os
-import pigpio
 import time
-import DHT22
 from meteocalc import Temp, dew_point, heat_index, wind_chill, feels_like
+import /opt/thermostate/pigpio
+import /opt/thermostate/DHT22
 
 # this connects to the pigpio daemon which must be started first
 pi = pigpio.pi()
@@ -37,7 +37,7 @@ for file in file_array:
 	else:
 		print(file,"does not exist")
 		file = open (file, "x")
-while True:
+while True: #This loop will always be true and loop every 5 seconds
     #Read variables in from files
     main_f_offset_file = open(main_temp_cal, "r")
     main_f_offset = main_f_offset_file.read()
