@@ -19,3 +19,11 @@ Scripts built using
 Python
 Java
 PHP
+
+##Allowing PI user access to control GPIO pins, "RuntimeError: No access to /dev/mem.  Try running as root!"
+You will need to make sure you are a member of the gpio group:
+sudo adduser pi gpio
+
+Check that /dev/gpiomem has the correct permissions:
+chown root:gpio /dev/gpiomem
+sudo chmod 660 /dev/gpiomem
