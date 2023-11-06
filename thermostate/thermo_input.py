@@ -2,8 +2,8 @@
 import os
 import time
 from meteocalc import Temp, dew_point, heat_index, wind_chill, feels_like
-import /opt/thermostate/pigpio
-import /opt/thermostate/DHT22
+import pigpio
+import DHT22
 
 # this connects to the pigpio daemon which must be started first
 pi = pigpio.pi()
