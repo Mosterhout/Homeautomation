@@ -1,0 +1,75 @@
+yum install wget -y
+yum groupinstall "Development Tools" -y
+yum install gcc open-ssl-devel bzip2-devel libffi-devel -y
+yum install -y python3
+python3 --version
+python3 -m pip list
+python3 -m pip install --upgrade pip
+python3 -m pip install ansible
+python3 -m pip list
+wget https://www.python.org/ftp/python/3.11.5/Python-3.11.5.tgz
+tar xzf Python-3.11.5.tgz
+cd Python-3.11.5
+./configure --enable-optimizations
+make    OR    make altinstall
+	The make command builds the installer package. The altinstall command instructs the system to create 	a second 
+	installation of this version of Python. Without it, the system would replace the default version of Python.
+PATH="/root/Python-3.11.5:$PATH"
+
+
+yum install python-devel python-setuptools python-pip -y
+
+
+yum install wget -y
+yum groupinstall "Development Tools" -y
+yum install gcc open-ssl-devel libffi-devel zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel -y
+wget https://www.python.org/ftp/python/3.11.5/Python-3.11.5.tgz
+tar xzf Python-3.11.5.tgz
+cd Python-3.11.5
+vi /root/Python-3.11.5/Modules/Setup
+	uncomment zlib line
+./configure --enable-optimizations
+./configure --prefix=/usr/local LDFLAGS="-Wl,-rpath /usr/local/lib"
+make && make altinstall
+make altinstall
+
+
+
+###Working install###
+yum install wget gcc  libffi-devel zlib-devel bzip2-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel bash-completion -y
+yum groupinstall "Development Tools" -y
+#yum install open-ssl-devel openssl-devel -y
+cd /opt
+wget https://www.openssl.org/source/openssl-1.1.1g.tar.gz
+wget https://www.openssl.org/source/openssl-1.1.1g.tar.gz.sha256
+sha256sum openssl-1.1.1g.tar.gz
+cat openssl-1.1.1g.tar.gz.sha256
+tar zxvf openssl-1.1.1g.tar.gz
+cd openssl-1.1.1g
+./config --prefix=/opt/openssl --openssldir=/opt/openssl no-ssl2
+make
+make install
+cd /opt/openssl
+vi ~/.bash_profile
+	export PATH=/opt/openssl/bin:$PATH
+	export LD_LIBRARY_PATH=/opt/openssl/lib
+	export LC_ALL="en_US.UTF-8"
+	export LDFLAGS="-L /opt/openssl/lib -Wl,-rpath,/opt/openssl/lib"
+
+
+
+cd /opt
+wget https://www.python.org/ftp/python/3.11.5/Python-3.11.5.tgz
+tar xzf Python-3.11.5.tgz
+cd Python-3.11.5
+./configure --with-openssl=/opt/openssl --enable-optimizations --prefix=/usr/local LDFLAGS="-Wl,-rpath,/usr/local/lib"
+	
+
+
+python3.11 --version
+python3.11 -m pip list
+python3.11 -m pip install --upgrade pip
+python3.11 -m pip install ansible
+python3.11 -m pip install ansible-lint
+python3.11 -m pip install argcomplete
+python3.11 -m pip list

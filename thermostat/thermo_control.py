@@ -31,8 +31,7 @@ while True:
     #system state 0=off, 1=Auto, 2=Heat, 3=Cool
     if state == "0":
         print("0=off")
-        cur_temp_file = open(main_cur_temp_f, "r")
-        cur_temp = cur_temp_file.read(2)
+        print("system is off nothing to do")
     elif state == "1":
         print("1=Auto")
         cur_temp_file = open(main_cur_temp_f, "r")
